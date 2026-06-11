@@ -224,7 +224,8 @@ def plot(csv_path: Path) -> None:
         bbox_to_anchor=(0.5, -0.04),
     )
 
-    fig.suptitle(csv_path.stem, fontsize=7, y=1.01)
+    title = f"{', '.join(proteins)} across time and scientist"
+    fig.suptitle(title, fontsize=7, y=1.01)
     fig.tight_layout()
 
     out_dir = csv_path.parent
