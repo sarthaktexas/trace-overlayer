@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>531</string>
+	<key>AMApplicationVersion</key>
+	<string>2.10</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Run AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>-- Plot Plate Fluorescence (Quick Action)
+-- The Python script is embedded as base64 and written to a temp file at runtime.
+-- Set "Workflow receives: Files or Folders" in "Finder.app" in Automator.
+
+property uvBin : "/Users/sarthakmohanty/.local/bin/uv"
+
+-- The full plot_plate_fluorescence.py, base64-encoded.
+property encodedScript : "IyAvLy8gc2NyaXB0CiMgcmVxdWlyZXMtcHl0aG9uID0gIj49My4xMSIKIyBkZXBlbmRlbmNpZXMgPSBbCiMgICAibWF0cGxvdGxpYiIsCiMgICAibnVtcHkiLAojICAgInBhbmRhcyIsCiMgXQojIC8vLwoiIiIKUGxvdCBmbHVvcmVzY2VuY2UgdHJhY2VzIGZyb20gYSBwbGF0ZS12aWV3ZXIgQ1NWIGV4cG9ydC4KCkNvbHVtbiBuYW1pbmcgY29udmVudGlvbiAoZnJvbSB0aGUgcGxhdGUgdmlld2VyKToKICAgIDxQcm90ZWluPiBbPFNjaWVudGlzdD4gwrcgPERhdGU+XSAoPEV4cGVyaW1lbnQ+LCA8V2VsbDE+LCA8V2VsbDI+LCAuLi4pCiAgICA8UHJvdGVpbj4gWzxTY2llbnRpc3Q+IMK3IDxEYXRlPl0gKDxFeHBlcmltZW50PiwgPFdlbGwxPiwgLi4uKSAoU0UpCgpUaGUgc2NyaXB0IGdyb3VwcyB0cmFjZXMgYnkgcGxhdGUgY29sdW1uICh0aGUgbnVtZXJpYyBzdWZmaXggb2YgdGhlIHdlbGxzLAplLmcuICIwNCIpLCB0cmVhdGluZyBlYWNoIHBsYXRlIGNvbHVtbiBhcyBhIGRpc3RpbmN0IHRlY2huaWNhbC1yZXBlYXQgc2V0LgpXaXRoaW4gZWFjaCBncm91cCBpdCBzaG93cyB0aGUgZWZmZWN0IG9mIHNjaWVudGlzdCBhbmQgZGF5IHZpYSBjb2xvciAvIGxpbmVzdHlsZS4KClVzYWdlOgogICAgdXYgcnVuIHBsb3RfcGxhdGVfZmx1b3Jlc2NlbmNlLnB5IHBhdGgvdG8vcGxhdGUtdmlld2VyLmNzdgoKT3V0cHV0OgogICAgPGNzdi1kaXJlY3Rvcnk+LzxzdGVtPi5wbmcKIiIiCgpmcm9tIF9fZnV0dXJlX18gaW1wb3J0IGFubm90YXRpb25zCgppbXBvcnQgbG9nZ2luZwppbXBvcnQgcmUKaW1wb3J0IHN5cwpmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgKCmltcG9ydCBtYXRwbG90bGliIGFzIG1wbAppbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0CmZyb20gbWF0cGxvdGxpYi5jb2xvcnMgaW1wb3J0IExpbmVhclNlZ21lbnRlZENvbG9ybWFwCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgcGFuZGFzIGFzIHBkCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIE5hdHVyZSBzdHlsZQojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKX05BVFVSRV9SQyA9IHsKICAgICJmb250LmZhbWlseSI6ICJzYW5zLXNlcmlmIiwKICAgICJmb250LnNhbnMtc2VyaWYiOiBbIkhlbHZldGljYSIsICJBcmlhbCIsICJEZWphVnUgU2FucyJdLAogICAgImZvbnQuc2l6ZSI6IDcsCiAgICAiYXhlcy50aXRsZXNpemUiOiA4LAogICAgImF4ZXMubGFiZWxzaXplIjogNywKICAgICJ4dGljay5sYWJlbHNpemUiOiA2LAogICAgInl0aWNrLmxhYmVsc2l6ZSI6IDYsCiAgICAibGVnZW5kLmZvbnRzaXplIjogNiwKICAgICJheGVzLmxpbmV3aWR0aCI6IDAuNSwKICAgICJ4dGljay5tYWpvci53aWR0aCI6IDAuNSwKICAgICJ5dGljay5tYWpvci53aWR0aCI6IDAuNSwKICAgICJ4dGljay5taW5vci53aWR0aCI6IDAuNSwKICAgICJ5dGljay5taW5vci53aWR0aCI6IDAuNSwKICAgICJsaW5lcy5saW5ld2lkdGgiOiAwLjc1LAogICAgInBkZi5mb250dHlwZSI6IDQyLAogICAgInN2Zy5mb250dHlwZSI6ICJub25lIiwKICAgICJheGVzLnNwaW5lcy50b3AiOiBGYWxzZSwKICAgICJheGVzLnNwaW5lcy5yaWdodCI6IEZhbHNlLAp9CgptcGwucmNQYXJhbXMudXBkYXRlKF9OQVRVUkVfUkMpCmxvZ2dpbmcuZ2V0TG9nZ2VyKCJmb250VG9vbHMiKS5zZXRMZXZlbChsb2dnaW5nLkVSUk9SKQoKX0NBVEVHT1JJQ0FMID0gWwogICAgIiM0RTc5QTciLAogICAgIiNFMTU3NTkiLAogICAgIiM1OUExNEYiLAogICAgIiNGMjhFMkIiLAogICAgIiM3NkI3QjIiLAogICAgIiNFREM5NDgiLAogICAgIiNCMDdBQTEiLAogICAgIiM5Qzc1NUYiLApdCgpQQUxFVFRFUyA9IHsKICAgICJjYXRlZ29yaWNhbCI6IF9DQVRFR09SSUNBTCwKICAgICJkaXZlcmdpbmciOiBtcGwuY29sb3JtYXBzWyJSZEJ1X3IiXS5jb3B5KCksCiAgICAic2VxdWVudGlhbCI6IExpbmVhclNlZ21lbnRlZENvbG9ybWFwLmZyb21fbGlzdCgKICAgICAgICAibmF0dXJlX3NlcXVlbnRpYWwiLAogICAgICAgIFsiI0ZGRkZDQyIsICIjRkZFREEwIiwgIiNGRUQ5NzYiLCAiI0ZFQjI0QyIsICIjRkQ4RDNDIiwgIiNGQzRFMkEiLCAiI0UzMUExQyIsICIjQjEwMDI2Il0sCiAgICApLAp9CgpXT1JEX1BOR19EUEkgPSA2MDAKCgpkZWYgX2FwcGx5KGF4OiBwbHQuQXhlcykgLT4gTm9uZToKICAgIGlmIGhhc2F0dHIoYXgsICJzcGluZXMiKToKICAgICAgICBheC5zcGluZXNbInRvcCJdLnNldF92aXNpYmxlKEZhbHNlKQogICAgICAgIGF4LnNwaW5lc1sicmlnaHQiXS5zZXRfdmlzaWJsZShGYWxzZSkKICAgICAgICBheC50aWNrX3BhcmFtcyhheGlzPSJib3RoIiwgd2hpY2g9Im1ham9yIiwgbGFiZWxzaXplPTYsIHdpZHRoPTAuNSwgbGVuZ3RoPTIpCiAgICAgICAgYXgudGlja19wYXJhbXMoYXhpcz0iYm90aCIsIHdoaWNoPSJtaW5vciIsIHdpZHRoPTAuNSkKICAgIGVsc2U6CiAgICAgICAgYXgudGlja19wYXJhbXMobGFiZWxzaXplPTYsIHdpZHRoPTAuNSwgbGVuZ3RoPTIpCgoKZGVmIF9zYXZlZmlnKGZpZzogcGx0LkZpZ3VyZSwgcGF0aDogc3RyIHwgUGF0aCwgKiprd2FyZ3MpIC0+IE5vbmU6CiAgICBvdXQgPSBQYXRoKHBhdGgpCiAgICBvdXQucGFyZW50Lm1rZGlyKHBhcmVudHM9VHJ1ZSwgZXhpc3Rfb2s9VHJ1ZSkKICAgIHNhdmVfa3cgPSBkaWN0KGJib3hfaW5jaGVzPSJ0aWdodCIsIGZhY2Vjb2xvcj0id2hpdGUiLCAqKmt3YXJncykKICAgIGZpZy5zYXZlZmlnKG91dC53aXRoX3N1ZmZpeCgiLnBuZyIpLCBkcGk9V09SRF9QTkdfRFBJLCAqKnNhdmVfa3cpCgoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyBDb2x1bW4tbmFtZSBwYXJzZXIKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCl9DT0xfUkUgPSByZS5jb21waWxlKAogICAgciJeKD9QPHByb3RlaW4+W15cW10rPylccyoiCiAgICByIlxbKD9QPHNjaWVudGlzdD5bXlzCt10rPylccyrCt1xzKig/UDxkYXRlPlxTKylcXVxzKiIKICAgIHIiXCgoP1A8ZXhwZXJpbWVudD5bXixdKyksXHMqKD9QPHdlbGxzPlteKV0rKVwpIgogICAgciIoPzpccypcKFNFXCkpPyQiCikKCgpkZWYgcGFyc2VfY29sKG5hbWU6IHN0cikgLT4gZGljdCB8IE5vbmU6CiAgICBtID0gX0NPTF9SRS5tYXRjaChuYW1lLnN0cmlwKCkpCiAgICBpZiBub3QgbToKICAgICAgICByZXR1cm4gTm9uZQogICAgd2VsbHMgPSBbdy5zdHJpcCgpIGZvciB3IGluIG0uZ3JvdXAoIndlbGxzIikuc3BsaXQoIiwiKV0KICAgIGNvbF9udW1zID0ge3JlLnN1YihyIltBLVphLXpdIiwgIiIsIHcpIGZvciB3IGluIHdlbGxzfQogICAgcGxhdGVfY29sID0gY29sX251bXMucG9wKCkgaWYgbGVuKGNvbF9udW1zKSA9PSAxIGVsc2UgIisiLmpvaW4oc29ydGVkKGNvbF9udW1zKSkKICAgIHJldHVybiB7CiAgICAgICAgInByb3RlaW4iOiBtLmdyb3VwKCJwcm90ZWluIikuc3RyaXAoKSwKICAgICAgICAic2NpZW50aXN0IjogbS5ncm91cCgic2NpZW50aXN0Iikuc3RyaXAoKSwKICAgICAgICAiZGF0ZSI6IG0uZ3JvdXAoImRhdGUiKS5zdHJpcCgpLAogICAgICAgICJleHBlcmltZW50IjogbS5ncm91cCgiZXhwZXJpbWVudCIpLnN0cmlwKCksCiAgICAgICAgIndlbGxzIjogd2VsbHMsCiAgICAgICAgInBsYXRlX2NvbCI6IHBsYXRlX2NvbCwKICAgICAgICAiaXNfc2UiOiBuYW1lLnN0cmlwKCkuZW5kc3dpdGgoIihTRSkiKSwKICAgICAgICAicmF3IjogbmFtZSwKICAgIH0KCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIE1haW4KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCmRlZiBsb2FkKHBhdGg6IFBhdGgpIC0+IHBkLkRhdGFGcmFtZToKICAgIGRmID0gcGQucmVhZF9jc3YocGF0aCkKICAgIGRmLmNvbHVtbnMgPSBbYy5zdHJpcCgpIGZvciBjIGluIGRmLmNvbHVtbnNdCiAgICBkZiA9IGRmLmRyb3BuYShzdWJzZXQ9W2RmLmNvbHVtbnNbMF1dKQogICAgZGZbZGYuY29sdW1uc1swXV0gPSBwZC50b19udW1lcmljKGRmLmlsb2NbOiwgMF0sIGVycm9ycz0iY29lcmNlIikKICAgIGRmID0gZGYuZHJvcG5hKHN1YnNldD1bZGYuY29sdW1uc1swXV0pCiAgICByZXR1cm4gZGYKCgpkZWYgcGxvdChjc3ZfcGF0aDogUGF0aCkgLT4gTm9uZToKICAgIGRmID0gbG9hZChjc3ZfcGF0aCkKICAgIHRpbWUgPSBkZi5pbG9jWzosIDBdLnZhbHVlcwoKICAgIG1ldGE6IGRpY3Rbc3RyLCBkaWN0XSA9IHt9CiAgICBmb3IgY29sIGluIGRmLmNvbHVtbnNbMTpdOgogICAgICAgIGluZm8gPSBwYXJzZV9jb2woY29sKQogICAgICAgIGlmIGluZm86CiAgICAgICAgICAgIG1ldGFbY29sXSA9IGluZm8KCiAgICBkZWYgX2tleShpbmZvOiBkaWN0KSAtPiB0dXBsZToKICAgICAgICByZXR1cm4gKGluZm9bInByb3RlaW4iXSwgaW5mb1sic2NpZW50aXN0Il0sIGluZm9bImRhdGUiXSwgaW5mb1sicGxhdGVfY29sIl0pCgogICAgbWVhbl9jb2xzOiBkaWN0W3R1cGxlLCBzdHJdID0ge30KICAgIHNlX2NvbHM6IGRpY3RbdHVwbGUsIHN0cl0gPSB7fQogICAgZm9yIGNvbCwgaW5mbyBpbiBtZXRhLml0ZW1zKCk6CiAgICAgICAgayA9IF9rZXkoaW5mbykKICAgICAgICBpZiBpbmZvWyJpc19zZSJdOgogICAgICAgICAgICBzZV9jb2xzW2tdID0gY29sCiAgICAgICAgZWxzZToKICAgICAgICAgICAgbWVhbl9jb2xzW2tdID0gY29sCgogICAgcHJvdGVpbnMgPSBzb3J0ZWQoe2tbMF0gZm9yIGsgaW4gbWVhbl9jb2xzfSkKICAgIHNjaWVudGlzdF9kYXRlX3BhaXJzID0gc29ydGVkKHsocywgZCkgZm9yIChfLCBzLCBkLCBfKSBpbiBtZWFuX2NvbHN9KQogICAgbl9wYW5lbHMgPSBsZW4oc2NpZW50aXN0X2RhdGVfcGFpcnMpCgogICAgZmlnLCBheGVzID0gcGx0LnN1YnBsb3RzKAogICAgICAgIDEsIG5fcGFuZWxzLAogICAgICAgIGZpZ3NpemU9KDMuMCAqIG5fcGFuZWxzLCAyLjgpLAogICAgICAgIHNxdWVlemU9RmFsc2UsCiAgICAgICAgc2hhcmV5PVRydWUsCiAgICAgICAgc2hhcmV4PVRydWUsCiAgICApCgogICAgcHJvdGVpbl9jb2xvciA9IHtwOiBQQUxFVFRFU1siY2F0ZWdvcmljYWwiXVtpXSBmb3IgaSwgcCBpbiBlbnVtZXJhdGUocHJvdGVpbnMpfQogICAgbGVnZW5kX2hhbmRsZXM6IGRpY3Rbc3RyLCBvYmplY3RdID0ge30KCiAgICBmb3IgY29sX2lkeCwgKHNjaWVudGlzdCwgZGF0ZSkgaW4gZW51bWVyYXRlKHNjaWVudGlzdF9kYXRlX3BhaXJzKToKICAgICAgICBheCA9IGF4ZXNbMF1bY29sX2lkeF0KICAgICAgICBfYXBwbHkoYXgpCgogICAgICAgIGNvbWJvcyA9IHNvcnRlZCh7KHAsIHBjKSBmb3IgKHAsIHMsIGQsIHBjKSBpbiBtZWFuX2NvbHMgaWYgcyA9PSBzY2llbnRpc3QgYW5kIGQgPT0gZGF0ZX0pCgogICAgICAgIGZvciBwcm90ZWluLCBwbGF0ZV9jb2wgaW4gY29tYm9zOgogICAgICAgICAgICBrID0gKHByb3RlaW4sIHNjaWVudGlzdCwgZGF0ZSwgcGxhdGVfY29sKQogICAgICAgICAgICBpZiBrIG5vdCBpbiBtZWFuX2NvbHM6CiAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICB5ID0gcGQudG9fbnVtZXJpYyhkZlttZWFuX2NvbHNba11dLCBlcnJvcnM9ImNvZXJjZSIpLnZhbHVlcwogICAgICAgICAgICBtYXNrID0gfm5wLmlzbmFuKHkpCiAgICAgICAgICAgIHQsIHkgPSB0aW1lW21hc2tdLCB5W21hc2tdCgogICAgICAgICAgICBjb2xvciA9IHByb3RlaW5fY29sb3JbcHJvdGVpbl0KICAgICAgICAgICAgYXgucGxvdCh0LCB5LCBjb2xvcj1jb2xvciwgbHc9MC45LCBhbHBoYT0wLjgpCgogICAgICAgICAgICBpZiBrIGluIHNlX2NvbHM6CiAgICAgICAgICAgICAgICB5ZSA9IHBkLnRvX251bWVyaWMoZGZbc2VfY29sc1trXV0sIGVycm9ycz0iY29lcmNlIikudmFsdWVzW21hc2tdCiAgICAgICAgICAgICAgICBheC5maWxsX2JldHdlZW4odCwgeSAtIHllLCB5ICsgeWUsIGNvbG9yPWNvbG9yLCBhbHBoYT0wLjEyLCBsdz0wKQoKICAgICAgICAgICAgaWYgcHJvdGVpbiBub3QgaW4gbGVnZW5kX2hhbmRsZXM6CiAgICAgICAgICAgICAgICBsZWdlbmRfaGFuZGxlc1twcm90ZWluXSA9IHBsdC5MaW5lMkQoW10sIFtdLCBjb2xvcj1jb2xvciwgbHc9MS41LCBsYWJlbD1wcm90ZWluKQoKICAgICAgICBheC5zZXRfdGl0bGUoZiJ7c2NpZW50aXN0fSAgwrcgIHtkYXRlfSIsIGZvbnRzaXplPTcsIGZvbnR3ZWlnaHQ9ImJvbGQiKQogICAgICAgIGF4LnNldF94bGFiZWwoIlRpbWUgKHMpIiwgZm9udHNpemU9NikKICAgICAgICBpZiBjb2xfaWR4ID09IDA6CiAgICAgICAgICAgIGF4LnNldF95bGFiZWwoIkZsdW9yZXNjZW5jZSAoQVUpIiwgZm9udHNpemU9NikKCiAgICBmaWcubGVnZW5kKAogICAgICAgIGhhbmRsZXM9bGlzdChsZWdlbmRfaGFuZGxlcy52YWx1ZXMoKSksCiAgICAgICAgbG9jPSJsb3dlciBjZW50ZXIiLAogICAgICAgIG5jb2w9bGVuKGxlZ2VuZF9oYW5kbGVzKSwKICAgICAgICBmb250c2l6ZT01LjUsCiAgICAgICAgZnJhbWVvbj1GYWxzZSwKICAgICAgICBiYm94X3RvX2FuY2hvcj0oMC41LCAtMC4wNCksCiAgICApCgogICAgdGl0bGUgPSBmInsnLCAnLmpvaW4ocHJvdGVpbnMpfSBhY3Jvc3MgdGltZSBhbmQgc2NpZW50aXN0IgogICAgZmlnLnN1cHRpdGxlKHRpdGxlLCBmb250c2l6ZT03LCB5PTEuMDEpCiAgICBmaWcudGlnaHRfbGF5b3V0KCkKCiAgICBvdXRfZGlyID0gY3N2X3BhdGgucGFyZW50CiAgICBfc2F2ZWZpZyhmaWcsIG91dF9kaXIgLyBjc3ZfcGF0aC5zdGVtKQogICAgcHJpbnQoZiJTYXZlZCDihpIge291dF9kaXIgLyBjc3ZfcGF0aC5zdGVtfS5wbmciKQogICAgcGx0LmNsb3NlKGZpZykKCgppZiBfX25hbWVfXyA9PSAiX19tYWluX18iOgogICAgaWYgbGVuKHN5cy5hcmd2KSA8IDI6CiAgICAgICAgcHJpbnQoIlVzYWdlOiB1diBydW4gcGxvdF9wbGF0ZV9mbHVvcmVzY2VuY2UucHkgPGNzdl9wYXRoPiIpCiAgICAgICAgc3lzLmV4aXQoMSkKICAgIHBsb3QoUGF0aChzeXMuYXJndlsxXSkpCg=="
+
+on run {input, parameters}
+	repeat with f in input
+		set csvPath to POSIX path of f
+		if csvPath ends with ".csv" then runPlot(csvPath)
+	end repeat
+	return input
+end run
+
+on runPlot(csvPath)
+	-- Write the embedded script to a temp file
+	set tmpScript to "/tmp/plot_plate_fluorescence.py"
+	do shell script "echo " &amp; quoted form of encodedScript &amp; " | base64 --decode &gt; " &amp; quoted form of tmpScript
+
+	set cmd to quoted form of uvBin &amp; " run " &amp; quoted form of tmpScript &amp; " " &amp; quoted form of csvPath &amp; " 2&gt;&amp;1"
+	do shell script cmd
+
+	set stem to do shell script "basename " &amp; quoted form of csvPath &amp; " .csv"
+
+	display notification "Saved " &amp; stem &amp; ".png" ¬
+		with title "Fluorescence Plot Done" sound name "Glass"
+end runPlot</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>AE106CF0-BAF9-4F27-A7F9-9112F5226096</string>
+				<key>Keywords</key>
+				<array>
+					<string>Run</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>5A07E341-7AFE-4524-947E-73056E7BBC71</string>
+				<key>UUID</key>
+				<string>394F435B-3553-4FAC-8344-01DB9F179B92</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>357.000000:368.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>applicationBundleIDsByPath</key>
+		<dict/>
+		<key>applicationPaths</key>
+		<array/>
+		<key>inputTypeIdentifier</key>
+		<string>com.apple.Automator.fileSystemObject</string>
+		<key>outputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>presentationMode</key>
+		<integer>15</integer>
+		<key>processesInput</key>
+		<false/>
+		<key>serviceInputTypeIdentifier</key>
+		<string>com.apple.Automator.fileSystemObject</string>
+		<key>serviceOutputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>serviceProcessesInput</key>
+		<false/>
+		<key>systemImageName</key>
+		<string>NSActionTemplate</string>
+		<key>useAutomaticInputType</key>
+		<false/>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.servicesMenu</string>
+	</dict>
+</dict>
+</plist>
