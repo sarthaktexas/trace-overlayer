@@ -111,7 +111,7 @@ def _savefig(fig: plt.Figure, path: str | Path, **kwargs) -> None:
 
 _COL_RE = re.compile(
     r"^(?P<protein>[^\[]+?)\s*"
-    r"\[(?P<scientist>[^\·]+?)\s*·\s*(?P<date>\S+)\]\s*"
+    r"\[(?P<scientist>[^\·\]]+?)(?:\s*·\s*(?P<date>\S+))?\]\s*"
     r"\((?P<experiment>[^,]+),\s*(?P<wells>[^)]+)\)"
     r"(?:\s*\(SE\))?$"
 )
@@ -127,7 +127,7 @@ def parse_col(name: str) -> dict | None:
     return {
         "protein": m.group("protein").strip(),
         "scientist": m.group("scientist").strip(),
-        "date": m.group("date").strip(),
+        "date": (m.group("date") or "").strip(),
         "experiment": m.group("experiment").strip(),
         "wells": wells,
         "plate_col": plate_col,
@@ -172,8 +172,15 @@ def plot(csv_path: Path) -> None:
             mean_cols[k] = col
 
     proteins = sorted({k[0] for k in mean_cols})
-    scientist_date_pairs = sorted({(s, d) for (_, s, d, _) in mean_cols})
-    n_panels = len(scientist_date_pairs)
+    single_day = all(d == "" for (_, _, d, _) in mean_cols)
+
+    if single_day:
+        # Panel by plate column (run); label with scientist so context isn't lost.
+        panels = sorted({(s, pc) for (_, s, _, pc) in mean_cols})
+        n_panels = len(panels)
+    else:
+        panels = sorted({(s, d) for (_, s, d, _) in mean_cols})
+        n_panels = len(panels)
 
     fig, axes = plt.subplots(
         1, n_panels,
@@ -186,14 +193,23 @@ def plot(csv_path: Path) -> None:
     protein_color = {p: PALETTES["categorical"][i] for i, p in enumerate(proteins)}
     legend_handles: dict[str, object] = {}
 
-    for col_idx, (scientist, date) in enumerate(scientist_date_pairs):
+    for col_idx, panel_key in enumerate(panels):
         ax = axes[0][col_idx]
         _apply(ax)
 
-        combos = sorted({(p, pc) for (p, s, d, pc) in mean_cols if s == scientist and d == date})
+        if single_day:
+            scientist, plate_col = panel_key
+            date = ""
+            combos = [(p, plate_col) for (p, s, d, pc) in mean_cols
+                      if s == scientist and d == date and pc == plate_col]
+            ax.set_title(f"{scientist}  ·  run {plate_col}", fontsize=7, fontweight="bold")
+        else:
+            scientist, date = panel_key
+            combos = sorted({(p, pc) for (p, s, d, pc) in mean_cols if s == scientist and d == date})
+            ax.set_title(f"{scientist}  ·  {date}", fontsize=7, fontweight="bold")
 
-        for protein, plate_col in combos:
-            k = (protein, scientist, date, plate_col)
+        for protein, pc in combos:
+            k = (protein, scientist, date, pc)
             if k not in mean_cols:
                 continue
             y = pd.to_numeric(df[mean_cols[k]], errors="coerce").values
@@ -210,7 +226,6 @@ def plot(csv_path: Path) -> None:
             if protein not in legend_handles:
                 legend_handles[protein] = plt.Line2D([], [], color=color, lw=1.5, label=protein)
 
-        ax.set_title(f"{scientist}  ·  {date}", fontsize=7, fontweight="bold")
         ax.set_xlabel("Time (s)", fontsize=6)
         if col_idx == 0:
             ax.set_ylabel("Fluorescence (AU)", fontsize=6)
@@ -224,7 +239,7 @@ def plot(csv_path: Path) -> None:
         bbox_to_anchor=(0.5, -0.04),
     )
 
-    title = f"{', '.join(proteins)} across time and scientist"
+    title = f"{', '.join(proteins)} across time and {'run' if single_day else 'scientist'}"
     fig.suptitle(title, fontsize=7, y=1.01)
     fig.tight_layout()
 
