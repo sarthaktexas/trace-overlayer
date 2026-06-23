@@ -245,7 +245,7 @@ def plot(csv_path: Path) -> None:
 
     out_dir = csv_path.parent
     _savefig(fig, out_dir / csv_path.stem)
-    print(f"Saved → {out_dir / csv_path.stem}.png")
+    print(f"Saved -> {out_dir / csv_path.stem}.png")
     plt.close(fig)
 
 
